@@ -4,6 +4,9 @@ import ir.ariana.base.entity.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -21,9 +24,9 @@ public class Course extends BaseEntity<Long> {
 
     private Long price;
 
-    @JoinColumn(name ="teacher_id")
-    @ManyToOne
-    private Teacher teacher;
-
-
+//    @ManyToOne
+//    private Student student;
+//
+//    @ManyToOne
+//    private Teacher teacher;
 }

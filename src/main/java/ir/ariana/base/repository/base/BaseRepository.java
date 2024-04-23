@@ -1,4 +1,4 @@
-package ir.ariana.base.repository;
+package ir.ariana.base.repository.base;
 
 import ir.ariana.base.entity.BaseEntity;
 

@@ -1,13 +1,15 @@
 package ir.ariana.base.model;
 
 import ir.ariana.base.entity.BaseEntity;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @NoArgsConstructor
+@AllArgsConstructor
 @Getter
 @Setter
 @ToString
@@ -30,18 +32,13 @@ public class Student extends BaseEntity<Long> {
     @Column(name = "phone_number")
     private String phoneNumber;
 
+    @Column(unique = true)
+    @OneToMany
+    private List<Course> courses=new ArrayList<>();
+
     public Student(Long aLong, String firstName, String lastName, String studentCode,
                    String password, String phoneNumber) {
         super(aLong);
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.studentCode = studentCode;
-        this.password = password;
-        this.phoneNumber = phoneNumber;
-    }
-
-    public Student(String firstName, String lastName, String studentCode,
-                   String password, String phoneNumber) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.studentCode = studentCode;

@@ -5,6 +5,8 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
 import lombok.*;
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -27,12 +29,27 @@ public class Teacher extends BaseEntity<Long> {
     private String phoneNumber;
 
     @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
     private MasterDegree masterDegree;
 
-    @ManyToOne
-    private Course course;
+    @OneToMany
+    private List<Course> courseList=new ArrayList<>();
 
+    @Size(max = 20, min = 8, message = "Invalid username. Size should be between 8 to 20.")
     @Column(unique = true,nullable = false)
     private String username;
+
+    @Column(nullable = false)
     private String password;
+
+    public Teacher(Long aLong, String firstname, String lastname, String phoneNumber, MasterDegree masterDegree,
+                   String username, String password) {
+        super(aLong);
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.phoneNumber = phoneNumber;
+        this.masterDegree = masterDegree;
+        this.username = username;
+        this.password = password;
+    }
 }
